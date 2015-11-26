@@ -5,5 +5,6 @@
 
 var Main = new function(){
 
+    this.name = "Prueba";
 
 };
