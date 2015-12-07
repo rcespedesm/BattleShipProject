@@ -2,14 +2,16 @@
  * Created by rodrigocespedes on 12/7/2015.
  */
 
-function Table(size, config)
+function Table(config)
 {
-    this.size = size;
+    this.size = config.sizeTable;
     this.battleTable = [];
-    this.ships = config.ships;
+    this.qtyShips = config.sizeShips;
 
-    this.barcos = [];
+    this.ships = [];
 }
+
+
 
 Table.prototype.createTable = function()
 {
@@ -27,7 +29,7 @@ Table.prototype.createTable = function()
 
 Table.prototype.displayTable = function()
 {
-    console.log(this.ships);
+    console.log(this.qtyShips);
     var column = "/" + " |";
     for(var i = 0;i < this.size; i++)
     {
@@ -47,37 +49,37 @@ Table.prototype.displayTable = function()
 
 Table.prototype.setAllShips = function()
 {
-    for (var i = 0; i < this.ships.length; i++) {
+    for (var i = 0; i < this.qtyShips.length; i++) {
         this.setShip(i);
     }
 
-    console.log(this.barcos);
+    console.log(this.ships);
 }
 
 Table.prototype.setShip = function(index)
 {
     var shipBody = [];
     do {
-    var column = Math.round(Math.random() * (this.size - this.ships[index]));
-    var row = Math.round(Math.random() * (this.size - this.ships[index]));
+    var column = Math.round(Math.random() * (this.size - this.qtyShips[index]));
+    var row = Math.round(Math.random() * (this.size - this.qtyShips[index]));
     var position = Math.round(Math.random() * 1);
-    var verify = this.verifyPlace(column, row, position, this.ships[index]);
+    var verify = this.verifyPlace(column, row, position, this.qtyShips[index]);
     }while(verify == false);
 
     if(verify == true) {
         if(position === 1) {
-            for (var i = row; i < (row + this.ships[index]); i++) {
+            for (var i = row; i < (row + this.qtyShips[index]); i++) {
                 this.battleTable[i][column].name = (index + 1);
                 shipBody.push(this.battleTable[i][column]);
             }
         }
         else {
-            for (var i = column; i < (column + this.ships[index]); i++) {
+            for (var i = column; i < (column + this.qtyShips[index]); i++) {
                 this.battleTable[row][i].name = (index + 1);
                 shipBody.push(this.battleTable[row][i]);           }
         }
     }
-    this.barcos.push(new Ship(shipBody));
+    this.ships.push(new Ship(shipBody));
     return '';
 }
 

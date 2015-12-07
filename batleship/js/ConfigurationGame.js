@@ -4,7 +4,7 @@
 function ConfigurationGame(sizeTable)
 {
     this.sizeTable = sizeTable;
-    this.ships = [];
+    this.sizeShips = [];
 }
 
 ConfigurationGame.prototype.setConfiguration = function()
@@ -12,7 +12,7 @@ ConfigurationGame.prototype.setConfiguration = function()
     this.sizeTable = prompt("Enter Size Of Table");
 }
 
-ConfigurationGame.prototype.qtyShips = function()
+ConfigurationGame.prototype.qtyShipsCalculate = function()
 {
     var qty = Math.round(((this.sizeTable * this.sizeTable) * 35) / 100);
     var shipsSize = [];
@@ -24,6 +24,6 @@ ConfigurationGame.prototype.qtyShips = function()
             qty = qty - size;
         }
     }while(qty > 0);
-    this.ships = shipsSize;
+    this.sizeShips = shipsSize;
     return "";
 }

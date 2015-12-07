@@ -1,8 +1,4 @@
-/**
- * Created by rodrigocespedes on 12/7/2015.
- */
 
-function Ship(body)
-{
+var Ship = function(body){
     this.body = body;
-}
+};
