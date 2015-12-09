@@ -11,8 +11,6 @@ function Table(config)
     this.ships = [];
 }
 
-
-
 Table.prototype.createTable = function()
 {
     for(var i = 0;i < this.size; i++)

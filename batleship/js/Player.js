@@ -24,3 +24,19 @@ Player.prototype.shot = function(x, y){
         this.table.ships[i].markCell(x, y);
     }
 }
+
+Player.prototype.preShot = function(number){
+    var row = Math.floor(number / this.table.size);
+    var column = (number % this.table.size);
+    if(column === 0)
+    {
+        row = row - 1;
+        column = this.table.size - 1;
+    }
+    else
+    {
+        column = column - 1;
+    }
+    alert(row + " "+ column);
+    this.shot(row, column);
+}

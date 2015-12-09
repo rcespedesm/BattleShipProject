@@ -1,0 +1,16 @@
+
+body{
+    background: black;
+}
+
+.table{
+    background: red;
+    padding: 10px;
+}
+
+.cell{
+    background: white;
+    padding: 0px;
+    border: solid black 1px;
+    float: left;
+}
