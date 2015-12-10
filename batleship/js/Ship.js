@@ -3,6 +3,13 @@
  * @type type shipState Values for a ship's state.
  */
 var shipState = {life: 'life', shot : "shot", die : "die"};
+
+/**
+ * 
+ * @type String Symbol or character that represent a shot in a cell.
+ */
+var shotSymbol = '+';
+
 /**
  * Represent a ship in the battleShip Game.
  * @param {Cell} cells Ship's cells on the board of the game.
@@ -11,6 +18,7 @@ var shipState = {life: 'life', shot : "shot", die : "die"};
 var Ship = function(cells){
     this.cells = cells;
 };
+
 /**
  * Return the state of the ship.
  * @returns {shipState} life | shot | die
@@ -18,56 +26,62 @@ var Ship = function(cells){
 Ship.prototype.getState = function(){
     var count = 0;
     for(var x = 0; x < this.cells.length; x++){
-        if(this.cells[x].name === '+'){
+        if(this.cells[x].name === shotSymbol){
             count++;
         }
     }
-// for ship dies
+    // for ship dies
     if(count === this.cells.length){
         return shipState.die;
     }
-// for ship shoots
+    // for ship shoots
     if(count < this.cells.length){
-        return shipState.shoot;
+        return shipState.shot;
     }
-//default is life.
+    //default is life.
     return shipState.life;
 };
+
 /**
  * Return the cell of the ship that is in the position x and y on the board.
  * @param {int} x Position X on the board
  * @param {int} y Position Y on the board
- * @returns {Cell} Cell of the ship.
+ * @returns {Cell} Cell of the ship. Undefined if not exist.
  */
 Ship.prototype.getCell = function(x, y){
-    for(var i = 0; i < this.cells.length; i++){
-        if(this.cells[i].posX === x && this.cells[i].posY === y){
-            return this.cells[i];
+    if(this.existCell(x,y)){
+        for(var i = 0; i < this.cells.length; i++){
+            if(this.cells[i].posX === x && this.cells[i].posY === y){
+                return this.cells[i];
+            }
         }
-    }
+    }    
 };
+
+
 /**
  * Verify if exist a cell with postion X and Y on the ship.
- * @param {type} x Position X on the board
- * @param {type} y Position Y on the board
+ * @param {int} x Position X on the board
+ * @param {int} y Position Y on the board
  * @returns {Boolean} Exist
  */
 Ship.prototype.existCell = function(x, y){
-    for(var i = 0; i < this.body.length; i++){
+    for(var i = 0; i < this.cells.length; i++){
         if(this.cells[i].posX === x && this.cells[i].posY === y){
             return true;
         }
     }
     return false;
 };
+
 /**
  * Mark the cell of the ship in the position X and Y.
  * @param {int} x Position X on the board.
  * @param {int} y Position Y on the board.
- * @returns {undefined} if does not mark the cell.
+ * @returns {undefined}.
  */
 Ship.prototype.markCell = function(x,y){
     if(this.existCell(x,y)){
-        this.getCell(x,y).name = '+';
+        this.getCell(x,y).name = shotSymbol;
     }
 };
