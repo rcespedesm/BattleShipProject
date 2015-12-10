@@ -17,6 +17,7 @@ var shotSymbol = '+';
  */
 var Ship = function(cells){
     this.cells = cells;
+    this.status = shipState.life;
 };
 
 /**
@@ -35,11 +36,11 @@ Ship.prototype.getState = function(){
         return shipState.die;
     }
     // for ship shoots
-    if(count < this.cells.length){
-        return shipState.shot;
+    if(count === 0){
+        return shipState.life;
     }
     //default is life.
-    return shipState.life;
+    return shipState.shot;
 };
 
 /**
@@ -84,4 +85,5 @@ Ship.prototype.markCell = function(x,y){
     if(this.existCell(x,y)){
         this.getCell(x,y).name = shotSymbol;
     }
+    this.status = this.getState();
 };

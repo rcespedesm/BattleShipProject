@@ -7,7 +7,6 @@ function Table(config)
     this.size = config.sizeTable;
     this.battleTable = [];
     this.qtyShips = config.sizeShips;
-
     this.ships = [];
 }
 

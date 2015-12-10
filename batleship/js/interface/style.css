@@ -6,6 +6,8 @@ body{
 .table{
     background: red;
     padding: 10px;
+    margin: 35px;
+    float: left;
 }
 
 .cell{

@@ -18,11 +18,11 @@ function Player(name, config)
 
 Player.prototype.shot = function(x, y){
     this.table.battleTable[x][y].name = "+";
-
     for(var i = 0;i < this.table.ships.length;i++)
     {
         this.table.ships[i].markCell(x, y);
     }
+
 }
 
 Player.prototype.preShot = function(number){
