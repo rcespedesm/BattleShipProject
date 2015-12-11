@@ -9,11 +9,9 @@
  * @constructor
  */
 
-function Player(name, config)
-{
+function Player(name, config ){
     this.name = name;
     this.table = new Table(config);
-
 }
 
 Player.prototype.shot = function(x, y){
@@ -26,6 +24,11 @@ Player.prototype.shot = function(x, y){
 }
 
 Player.prototype.preShot = function(number){
+    var coordinates = this.getCordinate(number);
+    this.shot(coordinates['row'], coordinates['column']);
+}
+
+Player.prototype.getCordinate = function(number){
     var row = Math.floor(number / this.table.size);
     var column = (number % this.table.size);
     if(column === 0)
@@ -37,6 +40,9 @@ Player.prototype.preShot = function(number){
     {
         column = column - 1;
     }
-    alert(row + " "+ column);
-    this.shot(row, column);
+    var coordinate = [];
+    coordinate['row'] = row;
+    coordinate['column'] = column;
+
+    return coordinate;
 }

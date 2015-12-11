@@ -1,11 +1,30 @@
 /**
  * Created by rodrigocespedes on 12/9/2015.
  */
-function shot(a)
+function verifyTurn(e)
 {
-
-    game.player[0].preShot(a);
+    alert('hola ');
+    //game.changeTurn(e);
+    //game.player[0].preShot(a);
 }
+
+function setEventCell()
+{
+    $('.cell').on('click', function(e){game.changeTurn(e.target);});
+}
+
+function drawShot(e, name)
+{
+    var player = e.parentNode.id;
+    var cell = e.id;
+    if(name !== '0')
+        $('#' + player + ' #'+ e.id).attr('class', 'cellShot');
+    else
+        $('#' + player + ' #'+ e.id).attr('class', 'cellFail');
+
+    $('#' + player + ' #'+ e.id).off('click');
+}
+
 
 //$(document).ready(function() {
     function drawTable(size, name){
@@ -13,9 +32,8 @@ function shot(a)
         var tableContainer = '<div id = "'+ name + '"></div> ';
         $('body').append(tableContainer);
 
-
         var row = 0;
-        var sizeCell = 30;
+        var sizeCell = 50;
         var sizeTable = (size*sizeCell)+(2*size);
         var table = '<div class = "table" id="' + name+ '" style="width: ' + sizeTable
             + 'px;height: ' + sizeTable + 'px;">';
@@ -27,7 +45,6 @@ function shot(a)
         }
         table = table + '</div>';
 
-        $('#'+name).append(table);
-        $('.cell').on('click', game.changeTurn());
+        $('#' + name).append(table);
     }
 //});

@@ -6,5 +6,4 @@
 var game = new BSGame();
 
 game.start();
-
 game.displayGame();
