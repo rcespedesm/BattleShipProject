@@ -13,12 +13,19 @@ function setEventCell()
     $('.cell').on('click', function(e){game.changeTurn(e.target);});
 }
 
+function drawWin(player) {
+    $('.cell').off('click');
+    alert('You Winn ' + player.name);
+}
+
 function drawShot(e, name)
 {
     var player = e.parentNode.id;
     var cell = e.id;
     if(name !== '0')
-        $('#' + player + ' #'+ e.id).attr('class', 'cellShot');
+    {
+        $('#' + player + ' #' + e.id).attr('class', 'cellShot');
+    }
     else
         $('#' + player + ' #'+ e.id).attr('class', 'cellFail');
 
@@ -29,13 +36,16 @@ function drawShot(e, name)
 //$(document).ready(function() {
     function drawTable(size, name){
 
-        var tableContainer = '<div id = "'+ name + '"></div> ';
-        $('body').append(tableContainer);
-
+        var tableContainer = '<div class = "player" id = "'+ name + '"></div> ';
+        $('.game').append(tableContainer);
         var row = 0;
-        var sizeCell = 50;
-        var sizeTable = (size*sizeCell)+(2*size);
-        var table = '<div class = "table" id="' + name+ '" style="width: ' + sizeTable
+       /* var sizeCell = 50;
+        var sizeTable = (size*sizeCell)+(2*size);      */
+
+        var sizeTable = 420;
+        var sizeCell = (sizeTable/size) - 3;
+
+        var table = '<div class = "table" id="' + name + '" style="width: ' + sizeTable
             + 'px;height: ' + sizeTable + 'px;">';
         for(var i = 0;i < size*size;i++){
             var cell = '<div id ="' + (i + 1) +'" class = "cell" style="width: '

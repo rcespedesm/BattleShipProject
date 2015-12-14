@@ -7,12 +7,13 @@ function BSGame()
     this.player = [];
     this.config = new ConfigurationGame();
     this.flagShot = 0;
+    this.score = 0;
 }
 
 BSGame.prototype.start = function()
 {
     this.config.setConfiguration();
-    this.config.qtyShipsCalculate();
+    this.score = this.config.qtyShipsCalculate();
     var playerName = prompt("Name Of Player 1");
     this.player[0] = new Player(playerName, this.config);
     drawTable(this.config.sizeTable, this.player[0].name);
@@ -21,6 +22,7 @@ BSGame.prototype.start = function()
     this.player[1] = new Player(playerName, this.config);
     drawTable(this.config.sizeTable, this.player[1].name);
     setEventCell();
+
     return "";
 }
 
@@ -34,8 +36,16 @@ BSGame.prototype.changeTurn = function(e)
         var name = this.player[this.flagShot].table.battleTable[coordinate['row']][coordinate['column']].name;
         alert(coordinate['row']+"-"+coordinate['column']+'-'+name);
         drawShot(e, name);
+        if(name !== '0')
+            game.player[game.flagShot].points++;
+
         this.player[this.flagShot].preShot(e.id);
+        var winner = this.isWinner(this.player[this.flagShot]);
+        if(winner)
+            drawWin(this.player[this.flagShot]);
+
         this.flagShot = this.flagShot === 0 ? 1 : 0;
+
     }
     else
     {
@@ -44,6 +54,12 @@ BSGame.prototype.changeTurn = function(e)
     console.clear();
     game.player[0].table.displayTable();
     game.player[1].table.displayTable();
+}
+
+BSGame.prototype.isWinner = function(player)
+{
+    alert(player.points + " - " + this.score);
+    return player.points === this.score;
 }
 
 BSGame.prototype.displayGame = function()
@@ -60,4 +76,3 @@ BSGame.prototype.displayGame = function()
 
     return "";
 }
-

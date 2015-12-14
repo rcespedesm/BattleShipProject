@@ -3,23 +3,51 @@ body{
     background: black;
 }
 
-.table{
-    background: red;
-    padding: 10px;
-    margin: 35px;
+.game{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:900px;
+    margin-left:-450px;
+    height:700px;
+    margin-top:-350px;
+    border:1px solid #808080;
+}
+.title{
+    padding: 13px;
+    font-size: 35px;
+    text-align: center;
+    color: #ffffff;
+    width: 874px;
+    height:40px;
+}
+.player{
+    margin-top: 10px;
+    width: 450px;
+    height:450px;
     float: left;
+}
+.table{
+    /*margin-left: 15px;*/
+    position: relative;
+    top:50%;
+    left:50%;
+    width:420px;
+    margin-left:-210px;
+    height:420px;
+    margin-top:-210px;
 }
 
 .cell{
     background: white;
     padding: 0px;
-    border: solid black 1px;
     float: left;
+    border:1px solid black;
 }
 
 .cellShot{
     background-image: url('ship.jpg');
-    padding: 0px;
+    background-size: contain;
     border: solid black 1px;
     float: left;
 }
@@ -27,7 +55,7 @@ body{
 
 .cellFail{
     background-image: url('water.jpg');
-    padding: 0px;
+    background-size: contain;
     border: solid black 1px;
     float: left;
 }
