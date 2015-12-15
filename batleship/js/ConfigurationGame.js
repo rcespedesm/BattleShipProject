@@ -15,6 +15,7 @@ ConfigurationGame.prototype.setConfiguration = function()
 ConfigurationGame.prototype.qtyShipsCalculate = function()
 {
     var qty = Math.round(((this.sizeTable * this.sizeTable) * 35) / 100);
+    var score = qty;
     var shipsSize = [];
     do{
         var size = Math.round(Math.random() * 2) + 1;
@@ -25,5 +26,5 @@ ConfigurationGame.prototype.qtyShipsCalculate = function()
         }
     }while(qty > 0);
     this.sizeShips = shipsSize;
-    return "";
+    return score;
 }

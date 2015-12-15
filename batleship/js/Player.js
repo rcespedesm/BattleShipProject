@@ -12,6 +12,7 @@
 function Player(name, config ){
     this.name = name;
     this.table = new Table(config);
+    this.points = 0;
 }
 
 Player.prototype.shot = function(x, y){
