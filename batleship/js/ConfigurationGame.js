@@ -7,9 +7,9 @@ function ConfigurationGame(sizeTable)
     this.sizeShips = [];
 }
 
-ConfigurationGame.prototype.setConfiguration = function()
+ConfigurationGame.prototype.setConfiguration = function(sizeTable)
 {
-    this.sizeTable = prompt("Enter Size Of Table");
+    this.sizeTable = sizeTable;
 }
 
 ConfigurationGame.prototype.qtyShipsCalculate = function()

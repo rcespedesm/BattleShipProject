@@ -1,12 +1,6 @@
 /**
  * Created by rodrigocespedes on 12/9/2015.
  */
-function verifyTurn(e)
-{
-    alert('hola ');
-    //game.changeTurn(e);
-    //game.player[0].preShot(a);
-}
 
 function setEventCell()
 {
@@ -15,7 +9,19 @@ function setEventCell()
 
 function drawWin(player) {
     $('.cell').off('click');
-    alert('You Winn ' + player.name);
+    $("#winner").fadeIn(3000);
+    $("#winner").text(player.name + ' WIN..!!');
+    var playAgain = '<input id="playAgain" value="Play Again" type="button" onclick="playAgain();">';
+    $("#winner").append(playAgain);
+
+}
+
+function playAgain() {
+    $(".player").remove();
+    $( ".configuration" ).css('display','block');
+    $('#namePlayer1').val("");
+    $('#namePlayer2').val("");
+    $("#winner").css('display','none');
 }
 
 function drawShot(e, name)
@@ -36,14 +42,14 @@ function drawShot(e, name)
 //$(document).ready(function() {
     function drawTable(size, name){
 
-        var tableContainer = '<div class = "player" id = "'+ name + '"></div> ';
+        var tableContainer = '<div class = "player" id = "'+ name + '"><div class="subtitle">' + name + '</div><br></div> ';
         $('.game').append(tableContainer);
         var row = 0;
        /* var sizeCell = 50;
         var sizeTable = (size*sizeCell)+(2*size);      */
 
         var sizeTable = 420;
-        var sizeCell = (sizeTable/size) - 3;
+        var sizeCell = (sizeTable/size) - 2;
 
         var table = '<div class = "table" id="' + name + '" style="width: ' + sizeTable
             + 'px;height: ' + sizeTable + 'px;">';

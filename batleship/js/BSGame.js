@@ -22,8 +22,36 @@ BSGame.prototype.start = function()
     this.player[1] = new Player(playerName, this.config);
     drawTable(this.config.sizeTable, this.player[1].name);
     setEventCell();
-
     return "";
+}
+
+
+BSGame.prototype.startInterface = function()
+{
+    if($('#sizeTable').val() !== "" && $('#namePlayer1').val() !== "" && $('#namePlayer2').val() !== "") {
+        if($('#namePlayer1').val() !== $('#namePlayer2').val()) {
+            this.config.setConfiguration($('#sizeTable').val());
+            this.score = this.config.qtyShipsCalculate();
+            this.player[0] = new Player($('#namePlayer1').val(), this.config);
+            drawTable(this.config.sizeTable, this.player[0].name);
+            this.turn = $('#namePlayer1').val();
+            this.player[1] = new Player($('#namePlayer2').val(), this.config);
+            drawTable(this.config.sizeTable, this.player[1].name);
+            setEventCell();
+            this.displayGame();
+            $('.configuration').css('display', 'none')
+            return "";
+        }
+        else
+        {
+            alert('Do not Insert The Same Name');
+        }
+    }
+    else
+    {
+        alert('Please, Insert Names of Players');
+    }
+
 }
 
 
@@ -34,7 +62,6 @@ BSGame.prototype.changeTurn = function(e)
     {
         var coordinate = this.player[this.flagShot].getCordinate(e.id);
         var name = this.player[this.flagShot].table.battleTable[coordinate['row']][coordinate['column']].name;
-        alert(coordinate['row']+"-"+coordinate['column']+'-'+name);
         drawShot(e, name);
         if(name !== '0')
             game.player[game.flagShot].points++;
@@ -58,7 +85,6 @@ BSGame.prototype.changeTurn = function(e)
 
 BSGame.prototype.isWinner = function(player)
 {
-    alert(player.points + " - " + this.score);
     return player.points === this.score;
 }
 

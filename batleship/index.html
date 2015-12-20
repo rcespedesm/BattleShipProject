@@ -8,8 +8,31 @@
 <body>
 <div class="game">
     <div class="title">
-        Battle Ship
+        Battle Ship Game
     </div>
+    <div class="configuration">
+        <div class="subtitle">
+            Configuration
+        </div>
+        <div class="content">
+            Name of Player 1
+            <br>
+            <input type="text" id="namePlayer1">
+            <br>
+            Name of Player 2
+            <br>
+            <input type="text" id="namePlayer2">
+            <br>
+            Size Of Table
+            <br>
+            <input type="number" id="sizeTable" value="2" min="2">
+            <br><br>
+            <input id="play" value="PLAY" type="button" onclick="game.startInterface();">
+        </div>
+    </div>
+</div>
+<div id="winner">
+
 </div>
 </body>
 
